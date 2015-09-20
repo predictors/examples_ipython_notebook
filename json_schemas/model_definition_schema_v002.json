@@ -1,0 +1,389 @@
+{	
+	"type": "object",
+	"required": ["name", "description", "pipes", "schema_version", "environment_name"],
+	"uniqueItems": true,
+	"additionalProperties": false,
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"schema_version": {
+			"type": "string",
+			"enum": ["0.02"]
+		},
+		"environment_name": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string"
+		},
+		"retraining_allowed": {
+			"type": "boolean"
+		},
+		"base_algorithm": {
+			"type": "string"
+		},
+		"score_minimized": {
+			"type": "string"
+		},
+		"pipes": {
+			"type": "array",
+			"items": {
+				"anyOf": [
+					{ "$ref": "#/definitions/pipe_predicting" },
+					{ "$ref": "#/definitions/pipe_training" }
+				]
+			},
+			"uniqueItems": true,
+			"minItems": 1
+		}
+	},
+	"definitions": {
+		"pipe_predicting": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"action": {
+					"type": "string",
+					"enum": ["predict"]
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"inputs": {
+					"type": "array",
+					"items": {
+						"anyOf": [
+							{ "$ref": "#/definitions/variable_string" },
+							{ "$ref": "#/definitions/variable_integer" },
+							{ "$ref": "#/definitions/variable_float" },
+							{ "$ref": "#/definitions/file" }
+						]
+				  	}
+				},
+				"outputs": {
+					"type": "array",
+					"items": {
+						"anyOf": [
+							{ "$ref": "#/definitions/variable_string" },
+							{ "$ref": "#/definitions/variable_integer" },
+							{ "$ref": "#/definitions/variable_float" },
+							{ "$ref": "#/definitions/file" }
+						]
+				  	}
+				}
+			},
+			"required": ["id", "action", "name", "description", "inputs", "outputs"],
+			"uniqueItems": true,
+			"additionalProperties": false,
+			"minItems": 1
+		},
+		"pipe_training": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"action": {
+					"type": "string",
+					"enum": ["train"]
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"inputs": {
+					"type": "array",
+					"items": {
+						"anyOf": [
+							{ "$ref": "#/definitions/variable_string" },
+							{ "$ref": "#/definitions/variable_integer" },
+							{ "$ref": "#/definitions/variable_float" },
+							{ "$ref": "#/definitions/file" }
+						]
+				  	}
+				},
+				"outputs": {
+					"oneOf": [
+						{ "$ref": "#/definitions/training_outputs" }
+					]
+				}
+			},
+			"required": ["id", "action", "name", "description", "inputs", "outputs"],
+			"uniqueItems": true,
+			"additionalProperties": false,
+			"minItems": 1
+		},
+		"training_outputs": {
+			"type": "array",
+			"items": [
+				{
+					"type": "object",
+					"properties": {
+						"name": {
+							"type": "string",
+							"enum": ["model_definition"]
+						},
+						"type": {
+							"type": "string",
+							"enum": ["file"]
+						},
+						"filenames": {
+							"type": "array",
+							"items": {
+								"type": "string",
+								"enum": ["model_definition.json"]
+						  	}
+						}
+					},
+					"required": ["name", "type", "filenames"]
+				},
+				{
+					"type": "object",
+					"properties": {
+						"name": {
+							"type": "string",
+							"enum": ["scores"]
+						},
+						"type": {
+							"type": "string",
+							"enum": ["file"]
+						},
+						"filenames": {
+							"type": "array",
+							"items": {
+								"type": "string",
+								"enum": ["scores.json"]
+						  	}
+						}
+					},
+					"required": ["name", "type", "filenames"]
+				}
+			],
+			"uniqueItems": true,
+			"additionalItems": false,
+			"minItems": 2
+		},
+		"variable_string": {
+			"type": "object",
+			"properties":
+			{
+				"name": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string",
+					"enum": ["variable"]
+				},
+				"variable_type": {
+					"type": "string",
+					"enum": ["string"]
+				},
+				"values": {
+					"type": "array",
+					"items": {
+						"type": "string"
+				  	}
+				},
+				"required": {
+					"type": "boolean"
+				}
+			},
+			"required": ["name", "type", "variable_type"]
+		},
+		"variable_integer": {
+			"type": "object",
+			"properties":
+			{
+				"name": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string",
+					"enum": ["variable"]
+				},
+				"variable_type": {
+					"type": "string",
+					"enum": ["integer"]
+				},
+				"values": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+				  	}
+				},
+				"max_value": {
+					"type": "integer"
+				},
+				"min_value": {
+					"type": "integer"
+				},
+				"binary_decision": {
+					"type": "object",
+					"properties": {
+						"positive_label": {
+							"type": "string"
+						},
+						"negative_label": {
+							"type": "string"
+						},
+						"threshold": {
+							"type": "number"
+						}
+					},
+					"required": ["positive_label", "negative_label", "threshold"]
+				},
+				"required": {
+					"type": "boolean"
+				}
+			},
+			"required": ["name", "type", "variable_type"]
+		},
+		"variable_float": {
+			"type": "object",
+			"properties":
+			{
+				"name": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string",
+					"enum": ["variable"]
+				},
+				"variable_type": {
+					"type": "string",
+					"enum": ["float"]
+				},
+				"values": {
+					"type": "array",
+					"items": {
+						"type": "number"
+				  	}
+				},
+				"max_value": {
+					"type": "integer"
+				},
+				"min_value": {
+					"type": "integer"
+				},
+				"binary_decision": {
+					"type": "object",
+					"oneOf": [
+						{
+							"properties": {
+								"positive_label": {
+									"type": "string"
+								},
+								"negative_label": {
+									"type": "string"
+								},
+								"threshold": {
+									"type": "number"
+								}
+							},
+							"additionalProperties": false
+						},
+						{
+							"properties": {
+								"positive_label": {
+									"type": "string"
+								},
+								"negative_label": {
+									"type": "string"
+								},
+								"threshold": {
+									"type": "string",
+									"enum": ["interactive_from_scores"]
+								}
+							},
+							"additionalProperties": false
+						}
+					]
+				},
+				"required": {
+					"type": "boolean"
+				}
+			},
+			"required": ["name", "type", "variable_type"]
+		},
+		"file": {
+			"type": "object",
+			"anyOf":[
+				{
+					"properties":
+					{
+						"name": {
+							"type": "string"
+						},
+						"type": {
+							"type": "string",
+							"enum": ["file"]
+						},
+						"required": {
+							"type": "boolean"
+						}
+					},
+					"additionalProperties": false,
+					"required": ["name", "type"]
+				},
+				{
+					"oneOf": [
+						{
+							"properties":
+							{
+								"name": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string",
+									"enum": ["file"]
+								},
+								"required": {
+									"type": "boolean"
+								},
+								"extensions": {
+									"type": "array",
+									"items": {
+										"type": "string"
+								  	}
+								}
+							},
+							"additionalProperties": false,
+							"required": ["name", "type", "extensions"]
+						},
+						{
+							"properties":
+							{
+								"name": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string",
+									"enum": ["file"]
+								},
+								"required": {
+									"type": "boolean"
+								},
+								"filenames": {
+									"type": "array",
+									"items": {
+										"type": "string"
+								  	}
+								}
+							},
+							"additionalProperties": false,
+							"required": ["name", "type", "filenames"]
+						}
+					]
+				}
+			]
+		}
+	}
+}

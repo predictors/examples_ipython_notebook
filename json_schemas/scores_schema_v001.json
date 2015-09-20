@@ -1,0 +1,159 @@
+{	
+	"type": "array",
+	"uniqueItems": true,
+	"additionalItems": false,
+	"items": {
+		"anyOf": [
+			{ "$ref": "#/definitions/simple_score" },
+			{ "$ref": "#/definitions/multiclass_score" }
+		]
+  	},
+	"definitions": {
+		"simple_score": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"value": {
+					"type": "number"
+				},
+				"associated_values": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"value": {
+								"type": "number"
+							}
+						},
+						"required": ["name", "value"],
+						"uniqueItems": true,
+						"additionalItems": false
+					}
+				},
+				"associated_plots": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"horizontal_axis": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": ["name"],
+								"uniqueItems": true,
+								"additionalProperties": false
+							},
+							"vertical_axis": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": ["name"],
+								"uniqueItems": true,
+								"additionalProperties": false
+							},
+							"curves": {
+								"type": "array",
+								"items": {
+									"anyOf": [
+										{ 
+											"type": "object",
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"horizontal_axis_values": {
+													"type": "array",
+													"items": {
+														"type": "number"
+													},
+													"minItems": 2
+												},
+												"vertical_axis_values": {
+													"type": "array",
+													"items": {
+														"type": "number"
+													},
+													"minItems": 2
+												},
+												"info_associated_to_each_point": {
+													"type": "object",
+													"properties": {
+														"thresholds": {
+															"type": "array",
+															"items": {
+																"type": "number"
+															},
+															"minItems": 2
+														}
+													}
+												}
+											},
+											"required": ["name", "horizontal_axis_values", "vertical_axis_values"],
+											"uniqueItems": true,
+											"additionalProperties": false
+										}
+									],
+									"uniqueItems": true,
+									"additionalItems": false,
+									"minItems": 1
+								}
+							}
+						},
+						"required": ["horizontal_axis", "vertical_axis", "curves"],
+						"uniqueItems": true,
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": ["name", "value"],
+			"uniqueItems": true,
+			"additionalProperties": false
+		},
+		"multiclass_score": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"summary_name": {
+					"type": "string"
+				},
+				"summary_value": {
+					"type": "number"
+				},
+				"class_wise":{
+					"type": "object",
+					"properties": {
+						"names": {
+							"type": "array",
+							"items": {
+								"type": "string"
+						  	}
+						},
+						"values": {
+							"type": "array",
+							"items": {
+								"type": "number"
+						  	}
+						}
+					},
+					"required": ["names", "values"]
+				}
+			},
+			"required": ["name", "class_wise"],
+			"uniqueItems": true,
+			"additionalProperties": false
+		}
+	}
+}
