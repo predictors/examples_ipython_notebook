@@ -12,10 +12,10 @@ import copy
 class BankProbModel:
 
     
-    def datapalio_interface(self, **kwargs):
+    def predictors_ai_interface(self, **kwargs):
         
         """
-        This is the method used by DataPal.io to interact with the model.
+        This is the method used by Predictors.ai to interact with the model.
         
         Inputs:
                 

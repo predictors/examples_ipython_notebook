@@ -381,7 +381,7 @@ Unnamed: 0,age,job,marital,education,default,balance,housing,loan,contact,days s
 379,27,services,single,secondary,no,468,yes,no,cellular,-1,0,unknown,no
 380,39,blue-collar,married,secondary,no,0,yes,no,cellular,325,1,failure,no
 381,39,blue-collar,married,primary,no,3705,yes,no,unknown,-1,0,unknown,no
-382,59,retired,married,tertiary,no,9676,no,no,telephone,-1,0,unknown,no
+382,59,retired,married,tertiary,no,9676,no,no,telephone,-1,0,unknown,yes
 383,37,services,married,secondary,no,1328,yes,no,telephone,341,4,failure,no
 384,41,blue-collar,married,primary,no,8,yes,no,cellular,-1,0,unknown,no
 385,45,blue-collar,married,primary,no,61,no,no,cellular,-1,0,unknown,no
@@ -1018,7 +1018,7 @@ Unnamed: 0,age,job,marital,education,default,balance,housing,loan,contact,days s
 1016,36,blue-collar,married,secondary,no,439,yes,no,unknown,-1,0,unknown,no
 1017,49,blue-collar,married,secondary,no,-454,yes,no,cellular,-1,0,unknown,yes
 1018,55,retired,married,secondary,no,466,no,no,unknown,-1,0,unknown,no
-1019,53,retired,married,secondary,no,665,yes,no,cellular,-1,0,unknown,no
+1019,53,retired,married,secondary,no,665,yes,no,cellular,-1,0,unknown,yes
 1020,42,technician,married,secondary,no,994,yes,no,cellular,78,5,failure,yes
 1021,45,admin.,married,secondary,no,5346,yes,yes,unknown,-1,0,unknown,yes
 1022,31,blue-collar,married,secondary,no,1243,yes,no,unknown,-1,0,unknown,no
@@ -1533,7 +1533,7 @@ Unnamed: 0,age,job,marital,education,default,balance,housing,loan,contact,days s
 1531,46,blue-collar,married,primary,no,2749,yes,no,cellular,-1,0,unknown,no
 1532,33,technician,married,secondary,no,133,no,no,cellular,-1,0,unknown,yes
 1533,32,blue-collar,single,secondary,no,1721,yes,no,unknown,-1,0,unknown,no
-1534,54,management,divorced,tertiary,no,2171,yes,yes,telephone,-1,0,unknown,no
+1534,54,management,divorced,tertiary,no,2171,yes,yes,telephone,-1,0,unknown,yes
 1535,37,services,married,secondary,no,4760,yes,no,cellular,169,2,failure,no
 1536,32,technician,single,secondary,no,2979,no,no,cellular,-1,0,unknown,no
 1537,43,management,married,tertiary,no,690,yes,no,cellular,-1,0,unknown,no
@@ -2971,7 +2971,7 @@ Unnamed: 0,age,job,marital,education,default,balance,housing,loan,contact,days s
 2969,47,technician,married,tertiary,no,2408,no,no,cellular,104,1,success,no
 2970,35,management,single,tertiary,no,252,yes,no,cellular,-1,0,unknown,no
 2971,37,blue-collar,married,secondary,no,346,yes,no,cellular,316,1,failure,no
-2972,56,admin.,married,secondary,no,45,no,no,unknown,-1,0,unknown,no
+2972,56,admin.,married,secondary,no,45,no,no,unknown,-1,0,unknown,yes
 2973,46,admin.,married,secondary,no,556,yes,yes,unknown,-1,0,unknown,yes
 2974,44,management,divorced,tertiary,no,-710,yes,no,cellular,-1,0,unknown,no
 2975,48,technician,single,tertiary,no,-551,yes,no,cellular,-1,0,unknown,no
@@ -3994,7 +3994,7 @@ Unnamed: 0,age,job,marital,education,default,balance,housing,loan,contact,days s
 3992,41,admin.,married,tertiary,no,1287,no,no,unknown,-1,0,unknown,no
 3993,44,management,married,tertiary,no,17361,no,no,unknown,-1,0,unknown,no
 3994,54,entrepreneur,married,unknown,no,1956,no,no,cellular,-1,0,unknown,no
-3995,37,blue-collar,divorced,secondary,no,0,yes,no,cellular,-1,0,unknown,no
+3995,37,blue-collar,divorced,secondary,no,0,yes,no,cellular,-1,0,unknown,yes
 3996,34,management,married,secondary,no,-294,yes,no,unknown,-1,0,unknown,no
 3997,43,technician,married,secondary,no,275,no,no,cellular,-1,0,unknown,no
 3998,44,management,married,tertiary,no,724,yes,no,cellular,172,1,failure,no
